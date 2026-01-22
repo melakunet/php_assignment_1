@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #614141;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.current-date {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+main {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+h2 {
+    color: #333;
+    border-bottom: 2px solid #5d3f3f;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+form {
+    margin: 20px 0;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    margin: 10px 0;
+}
+
+input[type="text"],
+input[type="time"],
+select {
+    padding: 8px;
+    width: 250px;
+    margin: 5px 0;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th {
+    background-color: #513636;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+footer {
+    background-color: #764545;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
