@@ -4,6 +4,8 @@
 
     // Handle worker registration
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register_worker'])) {
+        session_start();
+        
         $full_name = $_POST['full_name'];
         $phone = $_POST['phone'];
         $role = $_POST['role'];
@@ -17,7 +19,8 @@
         $statement->execute();
         $statement->closeCursor();
         
-        header("Location: index.php");
+        $_SESSION["fullName"] = $full_name;
+        header("Location: add_confirmation.php");
         exit();
     }
 
@@ -162,6 +165,8 @@
                 <th>Full Name</th>
                 <th>Phone</th>
                 <th>Role</th>
+                <th>&nbsp;</th> <!-- for update -->
+                <th>&nbsp;</th> <!-- for delete -->
             </tr>
 
             <?php foreach ($workers as $worker): ?>
@@ -170,6 +175,18 @@
                     <td><?php echo htmlspecialchars($worker['full_name']); ?></td>
                     <td><?php echo htmlspecialchars($worker['phone']); ?></td>
                     <td><?php echo htmlspecialchars($worker['role']); ?></td>
+                    <td>
+                        <form action="update_worker_form.php" method="post">
+                            <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
+                            <input type="submit" value="Update" />
+                        </form>
+                    </td>
+                    <td>
+                        <form action="delete_worker.php" method="post">
+                            <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
+                            <input type="submit" value="Delete" />
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
 

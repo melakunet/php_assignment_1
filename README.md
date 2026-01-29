@@ -18,7 +18,7 @@ Technologies Used:
 
 PHP
 
-MySQL / MariaDB
+MySQL 
 
 Apache Server (XAMPP)
 
