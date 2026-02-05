@@ -95,6 +95,121 @@ tr:hover {
     background-color: #f5f5f5;
 }
 
+input[type="file"] {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    width: 250px;
+}
+
+.worker-details-container {
+    display: flex;
+    gap: 30px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.worker-image {
+    flex-shrink: 0;
+}
+
+.worker-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+    border: 3px solid #614141;
+    object-fit: cover;
+}
+
+.worker-info {
+    flex-grow: 1;
+}
+
+.details-table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.details-table th {
+    background-color: transparent;
+    color: #333;
+    text-align: right;
+    padding-right: 15px;
+    width: 30%;
+    font-weight: bold;
+}
+
+.details-table td {
+    text-align: left;
+    padding-left: 15px;
+}
+
+.action-buttons {
+    margin-top: 20px;
+}
+
+.btn-update,
+.btn-delete {
+    margin-right: 10px;
+}
+
+.btn-delete {
+    background-color: #d32f2f;
+}
+
+.btn-delete:hover {
+    background-color: #b71c1c;
+}
+
+.attendance-section {
+    margin-top: 30px;
+}
+
+.status-present {
+    color: green;
+    font-weight: bold;
+}
+
+.status-late {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-absent {
+    color: red;
+    font-weight: bold;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #614141;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.current-image {
+    width: 150px;
+    height: 150px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
 footer {
     background-color: #764545;
     color: white;

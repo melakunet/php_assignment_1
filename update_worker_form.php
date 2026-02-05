@@ -1,18 +1,24 @@
 <?php
     require("database.php");
 
-
-    // get data from the form
     $worker_id = filter_input(INPUT_POST, 'worker_id', FILTER_VALIDATE_INT);
 
-
     $queryWorkers = '
-        SELECT worker_id, full_name, phone, role FROM workers WHERE worker_id = :worker_id';
+        SELECT w.*, d.department_name 
+        FROM workers w
+        LEFT JOIN departments d ON w.department_id = d.department_id
+        WHERE w.worker_id = :worker_id';
 
     $statement = $db->prepare($queryWorkers);
     $statement->bindValue(':worker_id', $worker_id);
     $statement->execute();
     $worker = $statement->fetch();
+    $statement->closeCursor();
+
+    $queryDepartments = 'SELECT * FROM departments ORDER BY department_name';
+    $statement = $db->prepare($queryDepartments);
+    $statement->execute();
+    $departments = $statement->fetchAll();
     $statement->closeCursor();
 
 ?>
@@ -31,23 +37,41 @@
         <main>
             <h2>Update Worker</h2>
 
-            <form action="update_worker.php" method="post" id="update_worker_form">
+            <form action="update_worker.php" method="post" id="update_worker_form" enctype="multipart/form-data">
                 <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
+                
                 <div id="data">
 
                     <label>Full Name:</label>
-                    <input type="text" name="full_name" value="<?php echo $worker['full_name']; ?>" /><br />
+                    <input type="text" name="full_name" value="<?php echo htmlspecialchars($worker['full_name']); ?>" required /><br />
 
                     <label>Phone:</label>
-                    <input type="text" name="phone" value="<?php echo $worker['phone']; ?>" /><br />
+                    <input type="text" name="phone" value="<?php echo htmlspecialchars($worker['phone']); ?>" required /><br />
 
-                    <label>Role:</label>
-                    <select name="role">
-                        <option value="Manager" <?php if ($worker['role'] == 'Manager') echo 'selected'; ?>>Manager</option>
-                        <option value="Sales" <?php if ($worker['role'] == 'Sales') echo 'selected'; ?>>Sales</option>
-                        <option value="Cashier" <?php if ($worker['role'] == 'Cashier') echo 'selected'; ?>>Cashier</option>
-                        <option value="Stock" <?php if ($worker['role'] == 'Stock') echo 'selected'; ?>>Stock</option>
+                    <label>Email:</label>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($worker['email'] ?? ''); ?>" /><br />
+
+                    <label>Department:</label>
+                    <select name="department_id" required>
+                        <option value="">Select Department</option>
+                        <?php foreach ($departments as $dept): ?>
+                            <option value="<?php echo $dept['department_id']; ?>" 
+                                <?php if ($worker['department_id'] == $dept['department_id']) echo 'selected'; ?>>
+                                <?php echo htmlspecialchars($dept['department_name']); ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select><br />
+
+                    <label>Hire Date:</label>
+                    <input type="date" name="hire_date" value="<?php echo $worker['hire_date']; ?>" /><br />
+
+                    <?php if (!empty($worker['image_filename'])): ?>
+                        <label>Current Image:</label>
+                        <img src="images/<?php echo htmlspecialchars($worker['image_filename']); ?>" height="100"><br />                        
+                    <?php endif; ?>
+
+                    <label>Update Image:</label>
+                    <input type="file" name="worker_image" /><br />
 
                 </div>
 
