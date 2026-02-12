@@ -24,15 +24,28 @@
     $worker = $statement->fetch();
     $statement->closeCursor();
     
-    $image_filename = $worker['image_filename'];
+    $old_image_name = $worker['image_filename'];
+    $base_dir = 'images/';
+    $image_filename = $old_image_name;
     
+    // Check if file upload exists
     if (isset($_FILES['worker_image']) && $_FILES['worker_image']['error'] !== UPLOAD_ERR_NO_FILE) {
         $upload_result = process_image($_FILES['worker_image']);
         if ($upload_result['success']) {
-            if ($worker['image_filename']) {
-                delete_image($worker['image_filename']);
+            // Delete old image if not placeholder
+            if($old_image_name != null && $old_image_name != 'placeholder.png') {
+                $path = $base_dir . $old_image_name;
+                if(file_exists($path)) {
+                    unlink($path);
+                }
             }
             $image_filename = $upload_result['filename'];
+        } else {
+            // Image upload failed - show error
+            $_SESSION["add_error"] = "Image upload failed: " . $upload_result['error'];
+            $url = "error.php";
+            header("Location: " . $url);
+            die();
         }
     }
 

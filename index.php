@@ -1,4 +1,10 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['isLoggedIn'])) {
+        header("Location: login_form.php");
+        die();
+    }
 
     require("database.php");
 
@@ -38,7 +44,7 @@
     <?php include("header.php"); ?>
 
     <main>
-        <h2>Worker List</h2>
+        <h2>Worker List (<?php echo "Logged In User: " . $_SESSION['userName']; ?>)</h2>
         <table>
             <tr>
                 <th>ID</th>

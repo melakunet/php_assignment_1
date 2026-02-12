@@ -1,4 +1,11 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['isLoggedIn'])) {
+        header("Location: login_form.php");
+        die();
+    }
+
     require("database.php");
 
     $queryDepartments = 'SELECT * FROM departments ORDER BY department_name';

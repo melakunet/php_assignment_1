@@ -1,4 +1,11 @@
 <?php
+    session_start();
+
+    if (!isset($_SESSION['isLoggedIn'])) {
+        header("Location: login_form.php");
+        die();
+    }
+
     require("database.php");
 
     $worker_id = filter_input(INPUT_POST, 'worker_id', FILTER_VALIDATE_INT);

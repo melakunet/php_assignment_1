@@ -1,7 +1,6 @@
 <?php
     session_start();
     require('database.php');
-    require('image_util.php');
     
     $worker_id = filter_input(INPUT_POST, 'worker_id', FILTER_VALIDATE_INT);
     
@@ -21,6 +20,7 @@
             die();
         }
         
+        // Get current worker record to check current image name
         $queryImage = 'SELECT image_filename FROM workers WHERE worker_id = :worker_id';
         $statement = $db->prepare($queryImage);
         $statement->bindValue(':worker_id', $worker_id);
@@ -28,8 +28,15 @@
         $worker = $statement->fetch();
         $statement->closeCursor();
         
-        if ($worker && $worker['image_filename']) {
-            delete_image($worker['image_filename']);
+        $old_image_name = $worker['image_filename'];
+        $base_dir = 'images/';
+
+        // Delete image if not placeholder
+        if($old_image_name != null && $old_image_name != 'placeholder.png') {
+            $path = $base_dir . $old_image_name;
+            if(file_exists($path)) {
+                unlink($path);
+            }
         }
         
         $query = 'DELETE FROM workers WHERE worker_id = :worker_id';

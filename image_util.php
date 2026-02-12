@@ -1,7 +1,7 @@
 <?php
 
 define('IMAGE_UPLOAD_DIR', 'images/');
-define('ALLOWED_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']);
+define('ALLOWED_TYPES', ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']);
 define('MAX_FILE_SIZE', 5 * 1024 * 1024);
 
 function process_image($file) {
@@ -22,7 +22,7 @@ function process_image($file) {
     finfo_close($finfo);
     
     if (!in_array($mime_type, ALLOWED_TYPES)) {
-        return ['success' => false, 'filename' => '', 'error' => 'Invalid file type. Only JPG, PNG, and GIF allowed'];
+        return ['success' => false, 'filename' => '', 'error' => 'Invalid file type. Only JPG, JPEG, PNG, GIF, and WebP allowed'];
     }
     
     $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -42,6 +42,11 @@ function process_image($file) {
 
 function delete_image($filename) {
     if (empty($filename)) {
+        return true;
+    }
+    
+    // Don't delete placeholder image
+    if ($filename === 'placeholder.png') {
         return true;
     }
     
