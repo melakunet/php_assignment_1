@@ -48,6 +48,22 @@
     $attendance_records = $statement->fetchAll();
     $statement->closeCursor();
 
+    // Get worker's skills (Many-to-Many relationship)
+    $querySkills = '
+        SELECT s.skill_id, s.skill_name, s.skill_category, 
+               ws.proficiency_level, ws.date_acquired
+        FROM worker_skills ws
+        INNER JOIN skills s ON ws.skill_id = s.skill_id
+        WHERE ws.worker_id = :worker_id
+        ORDER BY s.skill_category, s.skill_name
+    ';
+    
+    $statement = $db->prepare($querySkills);
+    $statement->bindValue(':worker_id', $worker_id);
+    $statement->execute();
+    $worker_skills = $statement->fetchAll();
+    $statement->closeCursor();
+
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +71,7 @@
 
 <head>
     <title>Worker Details - <?php echo htmlspecialchars($worker['full_name']); ?></title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
 </head>
 
 <body>
@@ -110,12 +126,12 @@
 
                 <!-- Action Buttons -->
                 <div class="action-buttons">
-                    <form action="update_worker_form.php" method="post" style="display: inline;">
+                    <form action="update_worker_form.php" method="post" class="inline-form">
                         <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
                         <input type="submit" value="Update Worker" class="btn-update" />
                     </form>
 
-                    <form action="delete_worker.php" method="post" style="display: inline;" 
+                    <form action="delete_worker.php" method="post" class="inline-form" 
                           onsubmit="return confirm('Are you sure you want to delete this worker?');">
                         <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
                         <input type="submit" value="Delete Worker" class="btn-delete" />
@@ -149,6 +165,60 @@
                 </table>
             <?php else: ?>
                 <p>No attendance records found for this worker.</p>
+            <?php endif; ?>
+        </div>
+
+        <!-- Worker Skills Section (Many-to-Many Relationship) -->
+        <div class="skills-section">
+            <h3>Worker Skills (<?php echo count($worker_skills); ?> total)</h3>
+            
+            <?php if (count($worker_skills) > 0): ?>
+                <table>
+                    <tr>
+                        <th>Skill Name</th>
+                        <th>Category</th>
+                        <th>Proficiency Level</th>
+                        <th>Date Acquired</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    <?php foreach ($worker_skills as $skill): 
+                        $proficiencyClass = 'proficiency-' . strtolower($skill['proficiency_level']);
+                    ?>
+                        <tr>
+                            <td><strong><?php echo htmlspecialchars($skill['skill_name']); ?></strong></td>
+                            <td><?php echo htmlspecialchars($skill['skill_category']); ?></td>
+                            <td class="text-center">
+                                <span class="proficiency-badge <?php echo $proficiencyClass; ?>">
+                                    <?php echo htmlspecialchars($skill['proficiency_level']); ?>
+                                </span>
+                            </td>
+                            <td><?php echo date('M j, Y', strtotime($skill['date_acquired'])); ?></td>
+                            <td>
+                                <form action="view_skill_details.php" method="post" class="inline-form">
+                                    <input type="hidden" name="skill_id" value="<?php echo $skill['skill_id']; ?>" />
+                                    <input type="submit" value="View Skill" class="btn-primary" />
+                                </form>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+                
+                <p class="mt-15">
+                    <form action="assign_skill_form.php" method="post" class="inline-form">
+                        <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
+                        <input type="submit" value="+ Assign New Skill" class="btn-success" />
+                    </form>
+                </p>
+            <?php else: ?>
+                <p class="alert alert-warning">
+                    This worker has no skills assigned yet.
+                </p>
+                <p class="mt-15">
+                    <form action="assign_skill_form.php" method="post" class="inline-form">
+                        <input type="hidden" name="worker_id" value="<?php echo $worker['worker_id']; ?>" />
+                        <input type="submit" value="+ Assign First Skill" class="btn-success" />
+                    </form>
+                </p>
             <?php endif; ?>
         </div>
 

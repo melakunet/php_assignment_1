@@ -37,13 +37,22 @@
 
 <head>
     <title>Worker Attendance System</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
 </head>
 
 <body>
     <?php include("header.php"); ?>
 
     <main>
+        <!-- Dashboard Link Banner -->
+        <div class="promo-banner">
+            <h2 class="promo-banner__title">📊 View Statistics</h2>
+            <p class="promo-banner__text">Check out the interactive charts and data visualizations!</p>
+            <a href="landing.php" class="promo-banner__btn">
+                View Stats
+            </a>
+        </div>
+
         <h2>Worker List (<?php echo "Logged In User: " . $_SESSION['userName']; ?>)</h2>
         <table>
             <tr>
@@ -120,9 +129,20 @@
 
         </table>
 
+        <!-- Quick Links Section -->
+        <div class="quick-links-card">
+            <h3 class="quick-links-card__title">⚡ Quick Actions</h3>
+            <div class="quick-links-card__grid">
+                <a href="manage_skills.php" class="action-btn-small btn-success">Manage Skills</a>
+                <a href="worker_skills_report.php" class="action-btn-small btn-primary">Skills Report</a>
+                <a href="send_daily_summary_form.php" class="action-btn-small btn-purple">Send Daily Summary</a>
+                <a href="view_email_logs.php" class="action-btn-small btn-warning">View Email Logs</a>
+            </div>
+        </div>
+
     </main>
 
-    <?php include("footer.php"); ?> 
+    <?php include("footer.php"); ?>
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 
     <head>
         <title>Worker Attendance System - Add Worker Confirmation</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
     </head>
 
     <body>
@@ -17,7 +17,7 @@
             <h2>Add Worker Confirmation</h2>
             
             <?php if (isset($_SESSION["image_filename"]) && $_SESSION["image_filename"]): ?>
-                <div style="text-align: center; margin: 20px 0;">
+                <div class="text-center">
                     <img src="images/<?php echo htmlspecialchars($_SESSION["image_filename"]); ?>" 
                          alt="Worker Photo" 
                          height="100">

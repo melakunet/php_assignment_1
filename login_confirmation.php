@@ -7,7 +7,7 @@
 
     <head>
         <title>Worker Attendance System - Login Confirmation</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
     </head>
 
     <body>
@@ -21,10 +21,13 @@
             </p>
             
             <p>
-                You are logged in and may proceed to the worker list by clicking below.
+                You are logged in and may proceed to the dashboard or worker list.
             </p>
 
-            <p><a href="index.php">Worker List</a></p>
+            <p>
+                <a href="landing.php" class="btn-link btn-purple mr-10">📊 Go to Dashboard</a>
+                <a href="index.php" class="btn-link btn-success">Worker List</a>
+            </p>
 
         </main>
 

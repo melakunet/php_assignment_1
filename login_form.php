@@ -7,7 +7,7 @@
 
     <head>
         <title>Worker Attendance System - Login</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
     </head>
 
     <body>
@@ -18,7 +18,7 @@
 
             <?php
                 if (isset($_SESSION['login_error'])) {
-                    echo '<p style="color: red; font-weight: bold;">' . htmlspecialchars($_SESSION['login_error']) . '</p>';
+                    echo '<p class="error-message">' . htmlspecialchars($_SESSION['login_error']) . '</p>';
                     unset($_SESSION['login_error']);
                 }
             ?>

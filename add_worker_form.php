@@ -20,7 +20,7 @@
 
 <head>
     <title>Worker Attendance System - Add Worker</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles.css?v=1.0" />
 </head>
 
 <body>

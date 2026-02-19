@@ -50,6 +50,23 @@
     // Get the newly created user's ID
     $user_id = $db->lastInsertId();
 
+    // Send welcome email (logged to database - local demo)
+    require_once('message.php');
+    
+    try {
+        $to_address = $email_address;
+        $to_name = $user_name;
+        $from_address = 'noreply@attendance.com';
+        $from_name = 'Attendance System';
+        $subject = 'Welcome to Worker Attendance System!';
+        $body = generate_welcome_email($user_name);
+        
+        send_mail($to_address, $to_name, $from_address, $from_name, $subject, $body, true, 'Welcome');
+    } catch (Exception $e) {
+        // Email logging failed, but don't stop registration
+        // Could log this error if needed
+    }
+
     $_SESSION["isLoggedIn"] = TRUE;
     $_SESSION["userName"] = $user_name;
     $_SESSION["user_id"] = $user_id;

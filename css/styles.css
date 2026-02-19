@@ -28,9 +28,12 @@ header h1 {
 
 main {
     background-color: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
+    padding: 30px;
+    margin: 25px auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 h2 {
@@ -217,3 +220,1243 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
+.dashboard-container {
+    width: 90%;
+    margin: 30px auto;
+    max-width: 1400px;
+}
+
+/* ============================================
+   DASHBOARD STYLES
+   ============================================ */
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #614141 0%, #8D5E5E 100%);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+    color: white; /* Ensure text is white */
+}
+
+/* Statistics Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly wider min-width */
+    gap: 25px; /* Increase gap slightly */
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Unified soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.dashboard-container img {
+    display: block;
+}
+
+/* Reusable framed thumbnail (for worker photos/previews) */
+.thumb-frame {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid #614141;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   WORKER PROFILE CARD GRID (Landing)
+   ============================================ */
+
+.worker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.worker-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.worker-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+.worker-card__photo {
+    width: 140px !important;
+    height: 140px !important;
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    margin: 0 auto 15px auto !important;
+    border: 4px solid #614141 !important;
+    background: #fff;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+.worker-card__photo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    max-width: none !important; 
+    display: block;
+}
+
+.worker-card__name {
+    margin: 6px 0 2px 0;
+    font-size: 1.1em;
+    font-weight: 800;
+    color: #2C3E50;
+}
+
+.worker-card__meta {
+    margin: 0;
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+.worker-card__status {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85em;
+    font-weight: 800;
+    color: #fff;
+}
+
+.worker-card__status.status-present { background: linear-gradient(135deg, #4CAF50 0%, #2e7d32 100%); }
+.worker-card__status.status-late { background: linear-gradient(135deg, #FF9800 0%, #ef6c00 100%); }
+.worker-card__status.status-absent { background: linear-gradient(135deg, #E53935 0%, #b71c1c 100%); }
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+    font-size: 3em;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.stat-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.stat-content p {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: 0.7;
+}
+
+
+.card-primary {
+    background: linear-gradient(135deg, #614141 0%, #8D5E5E 100%);
+    color: white;
+}
+
+.card-success {
+    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+    color: white;
+}
+
+.card-warning {
+    background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
+    color: white;
+}
+
+.card-danger {
+    background: linear-gradient(135deg, #E53935 0%, #EF5350 100%);
+    color: white;
+}
+
+.card-info {
+    background: linear-gradient(135deg, #1976D2 0%, #42A5F5 100%);
+    color: white;
+}
+
+.card-purple {
+    background: linear-gradient(135deg, #7B1FA2 0%, #AB47BC 100%);
+    color: white;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* ensure cards have enough width */
+    gap: 30px;
+    margin-bottom: 40px;
+}  
+
+.dashboard-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    border: 1px solid rgba(0,0,0,0.05); 
+    overflow: hidden; 
+}
+
+.dashboard-card h3 {
+    margin: 0 0 20px 0;
+    color: #2C3E50;
+    font-size: 1.3em;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 10px;
+    display: flex; 
+    align-items: center;
+}
+
+/* Dashboard Table */
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.dashboard-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.dashboard-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.text-success {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.text-warning {
+    color: #FF9800;
+    font-weight: bold;
+}
+
+.text-danger {
+    color: #f44336;
+    font-weight: bold;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-style: italic;
+}
+
+/* Quick Action Buttons Small */
+.action-btn-small {
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.action-btn-small:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.recent-checkins {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.checkin-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    overflow: hidden; 
+}
+
+.checkin-item:hover {
+    background-color: #e9ecef;
+}
+
+.checkin-avatar {
+    flex-shrink: 0;
+    width: 90px;
+    height: 70px;
+    min-width: 90px;
+    max-width: 90px;
+    border-radius: 10px;
+    border: 3px solid #614141;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.checkin-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    object-fit: cover;
+    display: block;
+}
+
+.checkin-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkin-info strong {
+    color: #2C3E50;
+    font-size: 1em;
+}
+
+.checkin-time {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.checkin-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: white;
+}
+
+/* Skills List */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.skill-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.skill-info strong {
+    color: #2C3E50;
+    font-size: 1em;
+}
+
+.skill-category {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.skill-count {
+    background-color: #667eea;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+/* Quick Actions */
+.quick-actions {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h3 {
+    margin: 0 0 20px 0;
+    color: #2C3E50;
+    font-size: 1.3em;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-icon {
+    font-size: 2em;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
+}
+
+.btn-purple {
+    background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
+}
+
+/* Chart Container */
+canvas {
+    max-height: 300px;
+}
+
+/* ============================================
+   EMAIL LOGS PAGE
+   ============================================ */
+
+.email-preview {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    max-height: 100px;
+    overflow: hidden;
+    font-size: 0.9em;
+}
+
+.email-type-badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: white;
+}
+
+.type-welcome { background-color: #4CAF50; }
+.type-late { background-color: #f39c12; }
+.type-summary { background-color: #2196F3; }
+.type-general { background-color: #9E9E9E; }
+
+.email-stats-container {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.email-stat-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.email-stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.filter-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border-radius: 5px;
+}
+
+/* ============================================
+   EMAIL PREVIEW PAGE
+   ============================================ */
+
+.email-header-box {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.email-header-box table {
+    width: 100%;
+}
+
+.email-header-box th {
+    text-align: left;
+    padding: 5px 10px;
+    width: 150px;
+}
+
+.email-header-box td {
+    padding: 5px 10px;
+}
+
+.email-body {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 300px;
+}
+
+.email-body iframe {
+    width: 100%;
+    min-height: 500px;
+    border: none;
+}
+
+/* ============================================
+   SKILL DETAILS PAGE
+   ============================================ */
+
+.skill-header {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* ============================================
+   PROFICIENCY BADGES (worker_details, view_skill_details, worker_skills_report)
+   ============================================ */
+
+.proficiency-badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.proficiency-beginner      { background-color: #ffc107; color: white; }
+.proficiency-intermediate  { background-color: #2196F3; color: white; }
+.proficiency-advanced      { background-color: #4CAF50; color: white; }
+.proficiency-expert        { background-color: #9C27B0; color: white; }
+
+/* ============================================
+   WORKER DETAILS PAGE
+   ============================================ */
+
+.skills-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* ============================================
+   WORKER SKILLS REPORT PAGE
+   ============================================ */
+
+.skills-action-buttons {
+    margin-bottom: 20px;
+}
+
+.btn-manage-skills {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.btn-assign-skill {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.skill-count-badge {
+    background-color: #2196F3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-spacing {
+    margin-top: 40px;
+}
+
+.back-section {
+    margin-top: 30px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN FOR DASHBOARD
+   ============================================ */
+
+/* ============================================
+   UTILITY CLASSES FOR ALERTS AND MESSAGES
+   ============================================ */
+
+/* Success Message */
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* Info Message */
+.alert-info {
+    padding: 15px;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+    color: #0c5460;
+    margin: 20px 0;
+}
+
+/* Warning Message */
+.alert-warning {
+    padding: 15px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 5px;
+    color: #856404;
+}
+
+/* Danger/Error Message */
+.alert-danger {
+    padding: 20px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+}
+
+/* Info Box with Blue Theme */
+.info-box {
+    padding: 15px;
+    background-color: #e3f2fd;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+}
+
+/* Info Box with Blue Left Border */
+.info-box-bordered {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border-left: 4px solid #2196F3;
+}
+
+/* Content Box - Gray Background */
+.content-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* ============================================
+   BUTTON UTILITY CLASSES
+   ============================================ */
+
+/* Base button link style */
+.btn-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #ffffff;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-link.btn-success {
+    background-color: #4CAF50;
+}
+
+.btn-link.btn-primary {
+    background-color: #2196F3;
+}
+
+.btn-link.btn-warning {
+    background-color: #f39c12;
+}
+
+.btn-link.btn-purple {
+    background-color: #9C27B0;
+}
+
+/* Button Link - Success (Green) */
+.btn-link-success {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Button Link - Primary (Blue) */
+.btn-link-primary {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+/* Button Link - Warning (Orange) */
+.btn-link-warning {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+/* Submit Button - Primary (Blue) */
+.btn-submit-primary {
+    background-color: #2196F3;
+}
+
+/* Submit Button - Success (Green) */
+.btn-submit-success {
+    background-color: #4CAF50;
+}
+
+/* Submit Button - Warning (Orange) */
+.btn-submit-warning {
+    background-color: #f39c12;
+}
+
+/* ============================================
+   LAYOUT UTILITY CLASSES
+   ============================================ */
+
+/* Margin Top 15px */
+.mt-15 {
+    margin-top: 15px;
+}
+
+/* Margin Top 20px */
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* Margin Top 30px */
+.mt-30 {
+    margin-top: 30px;
+}
+
+/* Margin Bottom 20px */
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/* Margin Left 10px */
+.ml-10 {
+    margin-left: 10px;
+}
+
+/* Margin Right 10px */
+.mr-10 {
+    margin-right: 10px;
+}
+
+/* Display Inline (for forms) */
+.d-inline {
+    display: inline;
+}
+
+/* Inline form utility */
+.inline-form {
+    display: inline;
+}
+
+/* Text Center */
+.text-center {
+    text-align: center;
+}
+
+/* Text Color - Orange Warning */
+.text-orange {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+/* Bold text helper */
+.text-bold {
+    font-weight: bold;
+}
+
+/* Count badge (skills total) */
+.count-badge {
+    background-color: #2196F3;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* ============================================
+   INDEX PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Statistics Banner */
+.stats-banner {
+    background: linear-gradient(135deg, #614141 0%, #8D5E5E 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stats-banner h2 {
+    margin: 0 0 10px 0;
+    border-bottom: none;
+    color: white;
+    font-size: 2em;
+}
+
+.stats-banner p {
+    margin: 0 0 20px 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.stats-banner-link {
+    background-color: white;
+    color: #614141;
+    padding: 12px 35px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stats-banner-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Quick Actions Box */
+.quick-actions-box {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.quick-actions-box h3 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.quick-actions-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+/* Quick Action Buttons with Gradients */
+.action-btn-manage-skills {
+    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+}
+
+.action-btn-skills-report {
+    background: linear-gradient(135deg, #2196F3 0%, #42A5F5 100%);
+}
+
+.action-btn-send-summary {
+    background: linear-gradient(135deg, #9C27B0 0%, #AB47BC 100%);
+}
+
+.action-btn-email-logs {
+    background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
+}
+
+/* ============================================
+   SKILL BADGE (for manage_skills.php, etc.)
+   ============================================ */
+
+.skill-count-badge {
+    background-color: #2196F3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Responsive Design for Dashboard */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 1.8em;
+    }
+    
+    .stat-number {
+        font-size: 2em;
+    }
+}
+
+/* ============================================
+   HEADER NAVIGATION
+   ============================================ */
+
+.header-nav {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 1.05em;
+}
+
+header .header-nav a,
+header .header-nav a:link,
+header .header-nav a:visited,
+header .header-nav a:active,
+header .header-nav a:hover {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    padding: 4px 10px;
+    line-height: 1.2;
+}
+
+header .header-nav a:hover {
+    text-decoration: underline !important;
+    opacity: 0.9;
+}
+
+.nav-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-text {
+    color: #ffffff;
+    font-weight: 600;
+    padding: 4px 8px;
+}
+
+/* ============================================
+   PROMO BANNER (Index Page)
+   ============================================ */
+
+.promo-banner {
+    background: linear-gradient(135deg, #614141 0%, #8D5E5E 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.promo-banner__title {
+    margin: 0 0 10px 0;
+    border-bottom: none;
+    color: white;
+    font-size: 2em;
+}
+
+.promo-banner__text {
+    margin: 0 0 20px 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.promo-banner__btn {
+    background-color: white;
+    color: #614141;
+    padding: 12px 35px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.promo-banner__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   QUICK LINKS CARD (Index Page)
+   ============================================ */
+
+.quick-links-card {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.quick-links-card__title {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    text-align: left;
+}
+
+.quick-links-card__grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+/* ============================================
+   EMAIL TEMPLATE STYLES (for HTML email bodies)
+   ============================================ */
+
+.email-template {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.email-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.email-container--wide {
+    max-width: 800px;
+}
+
+.email-header {
+    background-color: #2C3E50;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.email-header--warning {
+    background-color: #f39c12;
+}
+
+.email-content {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border: 1px solid #ddd;
+}
+
+.email-content--warning {
+    background-color: #fff3cd;
+    border-color: #ffeaa7;
+}
+
+.email-footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.email-warning {
+    color: #856404;
+    font-weight: bold;
+}
+
+.email-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.email-stat-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 140px;
+}
+
+.email-stat-present {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.email-stat-late {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.email-stat-absent {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.email-stat-number {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.email-template table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.email-template th,
+.email-template td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.email-template th {
+    background-color: #2C3E50;
+    color: #ffffff;
+}
+
+/* ============================================
+   ERROR MESSAGE
+   ============================================ */
+
+.error-message {
+    color: #d32f2f;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #ffebee;
+    border-left: 4px solid #d32f2f;
+    border-radius: 4px;
+}
+
