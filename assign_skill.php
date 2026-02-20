@@ -30,7 +30,7 @@
 
     require_once('database.php');
 
-    // Check if worker already has this skill (prevent duplicates)
+    
     $queryCheck = 'SELECT worker_skill_id FROM worker_skills 
                    WHERE worker_id = :worker_id AND skill_id = :skill_id';
     $statement = $db->prepare($queryCheck);
